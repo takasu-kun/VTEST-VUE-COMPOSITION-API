@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { provide } from "vue";
-import useToast from "./composables/useToast";
-import ToastProvider from "./components/ToastProvider.vue";
 
-const {
-  notifications,
-  createNotification,
-  removeNotifications,
-  stopBodyOverflow,
-  allowBodyOverflow,
-} = useToast();
+import { inject } from "vue";
+import { CreateNotification } from "./composables/useToast";
 
-provide("create-notification", createNotification);
+const createNotification = <CreateNotification>inject("create-notification");
+
 </script>
 
 <template>
@@ -45,31 +38,6 @@ provide("create-notification", createNotification);
         Show Error Toast
       </button>
     </div>
-    <transition-group
-      name="toast-provider"
-      tag="div"
-      class="toast-providers"
-      @before-enter="stopBodyOverflow"
-      @after-enter="allowBodyOverflow"
-      @before-leave="stopBodyOverflow"
-      @after-leave="allowBodyOverflow"
-    >
-      <toast-provider
-        v-for="(item, idx) in notifications"
-        :key="item.id"
-        :id="item.id"
-        :type="item.type"
-        :title="item.title"
-        :message="item.message"
-        :auto-close="item.autoClose"
-        :duration="item.duration"
-        @close="
-          () => {
-            removeNotifications(item.id);
-          }
-        "
-      ></toast-provider>
-    </transition-group>
   </div>
 </template>
 
