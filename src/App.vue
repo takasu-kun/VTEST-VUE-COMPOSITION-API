@@ -10,14 +10,14 @@ const createNotification = <CreateNotification>inject("create-notification");
 <template>
   <div class="main flex items-center justify-center gap-4 w-screen h-screen">
      <div class="btn-group flex flex-col items-center justify-center gap-4">
-      <button class="p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
+      <button class="uppercase p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
         @click.prevent="createNotification({ 
           message: 'This is an info toast' 
           })"
       >
        Show Info Toast
       </button>
-      <button class="p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
+      <button class="uppercase p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
         @click.prevent="
           createNotification({
             type: 'success',
@@ -27,7 +27,7 @@ const createNotification = <CreateNotification>inject("create-notification");
       >
         Show Success Toast
       </button>
-      <button class="p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
+      <button class="uppercase p-4 bg-indigo-100 border border-solid border-indigo-500 rounded-md"
         @click.prevent="
           createNotification({
             type: 'error',
